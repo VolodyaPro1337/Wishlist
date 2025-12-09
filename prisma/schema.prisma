@@ -11,6 +11,7 @@ model Wishlist {
   id        String   @id @default(cuid())
   slug      String   @unique
   title     String   @default("My New Year Wishlist")
+  ownerId   String? // Firebase Anonymous UID of creator
   pinHash   String?
   salt      String
   createdAt DateTime @default(now())
@@ -19,27 +20,27 @@ model Wishlist {
 }
 
 model Item {
-  id          String   @id @default(cuid())
-  wishlistId  String
-  wishlist    Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
-  
-  name        String
-  photoUrl    String?
-  price       String?
-  url         String?
-  quantity    Int      @default(1)
-  
-  claims      Claim[]
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  wishlistId String
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+
+  name     String
+  image    String? // Base64 or URL
+  price    String?
+  url      String?
+  quantity Int     @default(1)
+
+  claims Claim[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Claim {
-  id        String   @id @default(cuid())
-  itemId    String
-  item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
-  
-  userId    String   // Firebase Anonymous UID
+  id     String @id @default(cuid())
+  itemId String
+  item   Item   @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  userId    String // Firebase Anonymous UID or local anonymous ID
   createdAt DateTime @default(now())
 }

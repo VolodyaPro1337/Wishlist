@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
     --bg-dark: #050505;
@@ -10,11 +8,20 @@
     --snow-white: #ffffff;
 }
 
+[data-theme="classic"] {
+    --bg-dark: #f0f4f8;
+    --neon-red: #c92a2a;
+    --neon-green: #2b8a3e;
+    --neon-cyan: #1098ad;
+    --snow-white: #1a1a1a;
+}
+
 body {
     background-color: var(--bg-dark);
-    color: #ffffff;
+    color: var(--snow-white);
     font-family: var(--font-geist-sans), sans-serif;
     overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @layer utilities {
