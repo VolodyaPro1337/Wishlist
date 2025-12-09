@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-dark: #050505;
+    --neon-red: #ff0033;
+    --neon-green: #00ff66;
+    --neon-cyan: #00f3ff;
+    --snow-white: #ffffff;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    font-family: var(--font-geist-sans), sans-serif;
+    overflow-x: hidden;
+}
+
+@layer utilities {
+    .text-shadow-neon-red {
+        text-shadow: 0 0 5px rgba(255, 0, 51, 0.5), 0 0 10px rgba(255, 0, 51, 0.3);
+    }
+
+    .text-shadow-neon-green {
+        text-shadow: 0 0 5px rgba(0, 255, 102, 0.5), 0 0 10px rgba(0, 255, 102, 0.3);
+    }
+}
+
+/* Snowflake Animation */
+.snowflake {
+    position: absolute;
+    top: -10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}

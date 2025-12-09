@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: wishlist-app
+    image: wishlist-app-image
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://wishlist:wishlist_password@db:5432/wishlist_db
+    depends_on:
+      - db
+
+  db:
+    container_name: wishlist-db
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: wishlist
+      POSTGRES_PASSWORD: wishlist_password
+      POSTGRES_DB: wishlist_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
