@@ -20,10 +20,10 @@ export default function Home() {
                 <div className="mb-6 inline-block">
                     <Gift size={64} className="text-neon-red mx-auto drop-shadow-[0_0_15px_rgba(255,0,51,0.5)]" />
                 </div>
-                <h1 className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 text-[var(--snow-white)] drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
                     НОВОГОДНИЙ ВИШЛИСТ
                 </h1>
-                <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                <p className="text-xl md:text-2xl text-[var(--snow-white)] opacity-80 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
                     Создай свой список желаний и поделись магией
                 </p>
                 <div className="flex justify-center">

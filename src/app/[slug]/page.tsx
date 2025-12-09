@@ -25,12 +25,12 @@ export default async function WishlistPage({ params }: { params: Promise<{ slug:
     }
 
     return (
-        <div className="min-h-screen bg-bg-dark text-white relative flex flex-col">
+        <div className="min-h-screen bg-bg-dark text-[var(--snow-white)] relative flex flex-col">
             <Snowfall />
 
             <header className="py-8 px-4 text-center relative z-10">
                 <div className="inline-block relative">
-                    <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-neon-cyan to-white select-none pb-2">
+                    <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--snow-white)] via-neon-cyan to-[var(--snow-white)] select-none pb-2">
                         {wishlist.title}
                     </h1>
                     <div className="absolute -bottom-2 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-neon-cyan/50 to-transparent" />
@@ -42,7 +42,7 @@ export default async function WishlistPage({ params }: { params: Promise<{ slug:
                     {wishlist.items.map((item) => (
                         <div
                             key={item.id}
-                            className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300 flex flex-col"
+                            className="group bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl overflow-hidden hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300 flex flex-col"
                         >
                             {/* Image Section */}
                             <div className="relative aspect-[4/3] bg-black/40 overflow-hidden">
@@ -88,15 +88,15 @@ export default async function WishlistPage({ params }: { params: Promise<{ slug:
                 </div>
 
                 {wishlist.items.length === 0 && (
-                    <div className="text-center py-20 text-gray-500">
+                    <div className="text-center py-20 text-[var(--snow-white)] opacity-50">
                         <Gift size={48} className="mx-auto mb-4 opacity-30" />
                         <p>В этом списке пока пусто...</p>
                     </div>
                 )}
             </main>
 
-            <footer className="py-8 text-center text-gray-600 text-sm relative z-10">
-                <Link href="/" className="hover:text-white transition-colors border-b border-transparent hover:border-white/20 pb-0.5">
+            <footer className="py-8 text-center text-[var(--snow-white)] opacity-60 text-sm relative z-10">
+                <Link href="/" className="hover:text-[var(--snow-white)] opacity-100 transition-colors border-b border-transparent hover:border-[var(--snow-white)]/20 pb-0.5">
                     Создать свой список
                 </Link>
             </footer>

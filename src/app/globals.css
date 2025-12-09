@@ -6,14 +6,25 @@
     --neon-green: #00ff66;
     --neon-cyan: #00f3ff;
     --snow-white: #ffffff;
+    --snowflake-color: rgba(255, 255, 255, 0.8);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="classic"] {
-    --bg-dark: #f0f4f8;
+    --bg-dark: #cbd5e1;
+    /* Less light white (darker) */
     --neon-red: #c92a2a;
     --neon-green: #2b8a3e;
     --neon-cyan: #1098ad;
     --snow-white: #1a1a1a;
+    --snowflake-color: #000000;
+    /* Black snowflakes */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    /* White cards on gray bg */
+    --card-border: rgba(0, 0, 0, 0.05);
+    --input-bg: rgba(0, 0, 0, 0.05);
 }
 
 body {
@@ -38,9 +49,9 @@ body {
 .snowflake {
     position: absolute;
     top: -10px;
-    background: white;
+    background: var(--snowflake-color);
     border-radius: 50%;
-    opacity: 0.8;
+    /* opacity: 0.8; Removed to let variable handle alpha or solid color */
     animation: fall linear infinite;
 }
 

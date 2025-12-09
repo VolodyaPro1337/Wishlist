@@ -64,11 +64,11 @@ export default function CreateWishlistModal({ isOpen, onClose, userId }: Props) 
                                 <X size={20} />
                             </button>
 
-                            <h2 className="text-2xl font-bold mb-2 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-neon-white to-neon-cyan">
+                            <h2 className="text-2xl font-bold mb-2 flex items-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-[var(--snow-white)] to-neon-cyan">
                                 <Sparkles size={24} className="text-neon-cyan" />
                                 Создание Списка
                             </h2>
-                            <p className="text-gray-400 mb-6 text-sm">
+                            <p className="text-[var(--snow-white)] opacity-60 mb-6 text-sm">
                                 Придумайте уникальный ID для вашей ссылки или оставьте пустым для автогенерации.
                             </p>
 
@@ -83,7 +83,7 @@ export default function CreateWishlistModal({ isOpen, onClose, userId }: Props) 
                                             value={customSlug}
                                             onChange={(e) => setCustomSlug(e.target.value.replace(/[^a-zA-Z0-9-_]/g, ""))}
                                             placeholder="my-wishlist-2026"
-                                            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-cyan transition-colors placeholder:text-gray-600 font-mono"
+                                            className="w-full bg-[var(--snow-white)]/10 border border-[var(--snow-white)]/10 rounded-xl px-4 py-3 text-[var(--snow-white)] focus:outline-none focus:border-neon-cyan transition-colors placeholder:text-[var(--snow-white)]/40 font-mono"
                                         />
                                     </div>
                                     {error && <p className="text-neon-red text-xs mt-2">{error}</p>}

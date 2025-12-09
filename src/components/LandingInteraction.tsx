@@ -106,8 +106,8 @@ export default function LandingInteraction() {
                                         <div className="w-16 h-16 bg-neon-cyan/20 rounded-full flex items-center justify-center mb-4">
                                             <Plus size={32} className="text-neon-cyan" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-white mb-2">Новый Список</h3>
-                                        <p className="text-gray-400 text-sm mb-4">Создайте свой уникальный вишлист и поделитесь им</p>
+                                        <h3 className="text-xl font-bold text-[var(--snow-white)] mb-2">Новый Список</h3>
+                                        <p className="text-[var(--snow-white)] opacity-70 text-sm mb-4">Создайте свой уникальный вишлист и поделитесь им</p>
 
                                         <form onSubmit={handleCreate} className="w-full relative flex flex-col gap-3">
                                             <input
@@ -134,8 +134,8 @@ export default function LandingInteraction() {
                                         <div className="w-16 h-16 bg-neon-green/20 rounded-full flex items-center justify-center mb-4">
                                             <Search size={32} className="text-neon-green" />
                                         </div>
-                                        <h3 className="text-xl font-bold text-white mb-2">Найти по ID</h3>
-                                        <p className="text-gray-400 text-sm mb-4">Введите уникальный ID списка друга</p>
+                                        <h3 className="text-xl font-bold text-[var(--snow-white)] mb-2">Найти по ID</h3>
+                                        <p className="text-[var(--snow-white)] opacity-70 text-sm mb-4">Введите уникальный ID списка друга</p>
 
                                         <form onSubmit={handleJoin} className="w-full relative">
                                             <input

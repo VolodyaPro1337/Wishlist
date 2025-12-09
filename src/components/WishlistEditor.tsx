@@ -40,7 +40,6 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
     const [editUrl, setEditUrl] = useState("");
     const [editPrice, setEditPrice] = useState("");
 
-    // Image Upload Handler
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -204,12 +203,12 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
 
     if (showPinForm && !isPinSet) {
         return (
-            <div className="max-w-md mx-auto bg-white/5 border border-white/10 rounded-2xl p-8 backdrop-blur-xl relative overflow-hidden">
+            <div className="max-w-md mx-auto bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-8 backdrop-blur-xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-red to-neon-cyan" />
                 <div className="text-center mb-8">
                     <Lock size={48} className="mx-auto text-neon-cyan mb-4" />
-                    <h2 className="text-2xl font-bold text-white mb-2">Защитите ваш список</h2>
-                    <p className="text-gray-400">Установите PIN-код, чтобы только вы могли редактировать желания.</p>
+                    <h2 className="text-2xl font-bold text-[var(--snow-white)] mb-2">Защитите ваш список</h2>
+                    <p className="text-[var(--snow-white)] opacity-70">Установите PIN-код, чтобы только вы могли редактировать желания.</p>
                 </div>
 
                 <form onSubmit={handleSetPin} className="space-y-4">
@@ -235,11 +234,11 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
     return (
         <div className="max-w-4xl mx-auto">
             {/* Control Panel Header */}
-            <div className="flex items-center justify-between mb-8 bg-white/5 px-6 py-4 rounded-2xl border border-white/10 backdrop-blur-md">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <div className="flex items-center justify-between mb-8 bg-[var(--card-bg)] px-6 py-4 rounded-2xl border border-[var(--card-border)] backdrop-blur-md">
+                <h2 className="text-xl font-bold text-[var(--snow-white)] flex items-center gap-2">
                     <Lock size={20} className="text-neon-cyan" /> Панель управления
                 </h2>
-                <div className="text-xs text-gray-500 font-mono">
+                <div className="text-xs text-[var(--snow-white)] opacity-60 font-mono">
                     ID: {wishlistSlug}
                 </div>
             </div>
@@ -248,7 +247,7 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
             <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-8 backdrop-blur-xl relative group"
+                className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-6 mb-8 backdrop-blur-xl relative group"
             >
                 <div className="absolute inset-0 bg-gradient-to-r from-neon-red/5 to-neon-cyan/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
@@ -292,7 +291,7 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
                             <input
                                 type="text"
                                 placeholder="PlayStation 5 Pro..."
-                                className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-2 text-white focus:border-neon-cyan focus:outline-none transition-colors"
+                                className="w-full text-lg font-bold bg-[var(--input-bg)] border-none rounded-t-xl px-4 py-3 text-[var(--snow-white)] focus:outline-none focus:ring-2 focus:ring-neon-cyan/50 placeholder:text-gray-500"
                                 value={newItemName}
                                 onChange={(e) => setNewItemName(e.target.value)}
                                 required
@@ -300,32 +299,32 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
                         </div>
                         <div className="flex gap-4">
                             <div className="flex-1 space-y-2">
-                                <label className="text-xs text-gray-400 ml-2">Ссылка (опц.)</label>
+                                <label className="text-xs text-[var(--snow-white)]/60 block mb-1">Ссылка (опц.)</label>
                                 <div className="relative">
-                                    <LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
+                                    <LinkIcon size={14} className="absolute left-3 top-2.5 text-[var(--snow-white)]/40" />
                                     <input
                                         type="url"
                                         placeholder="https://..."
-                                        className="w-full bg-black/50 border border-white/10 rounded-xl pl-9 pr-4 py-2 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors"
+                                        className="w-full bg-[var(--input-bg)] border border-[var(--card-border)] rounded-xl pl-9 pr-4 py-2 text-[var(--snow-white)] text-sm focus:border-neon-cyan focus:outline-none transition-colors placeholder:text-[var(--snow-white)]/40"
                                         value={newItemUrl}
                                         onChange={(e) => setNewItemUrl(e.target.value)}
                                     />
                                 </div>
                             </div>
                             <div className="w-32 space-y-2">
-                                <label className="text-xs text-gray-400 ml-2">Цена (опц.)</label>
+                                <label className="text-xs text-[var(--snow-white)]/60 block mb-1">Цена (опц.)</label>
                                 <div className="relative">
-                                    <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
+                                    <DollarSign size={14} className="absolute left-3 top-2.5 text-[var(--snow-white)]/40" />
                                     <input
                                         type="text"
                                         placeholder="700$"
-                                        className="w-full bg-black/50 border border-white/10 rounded-xl pl-8 pr-4 py-2 text-white text-sm focus:border-neon-cyan focus:outline-none transition-colors"
+                                        className="w-full bg-[var(--input-bg)] border border-[var(--card-border)] rounded-xl pl-8 pr-4 py-2 text-[var(--snow-white)] text-sm focus:border-neon-cyan focus:outline-none transition-colors placeholder:text-[var(--snow-white)]/40"
                                         value={newItemPrice}
                                         onChange={(e) => setNewItemPrice(e.target.value)}
                                     />
                                 </div>
                             </div>
-                </div>
+                        </div>
                     </div>
 
                     <div className="flex gap-2 self-end w-full md:w-auto">
@@ -364,10 +363,10 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
                         layout
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="bg-white/5 border border-white/5 rounded-2xl p-4 flex items-center justify-between group hover:border-white/20 transition-all"
+                        className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl p-4 flex items-center justify-between group hover:border-white/20 transition-all"
                     >
                         <div className="flex items-center gap-4 flex-1">
-                            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-gray-800 to-black flex items-center justify-center border border-white/10 overflow-hidden relative">
+                            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-gray-800 to-black flex items-center justify-center border border-[var(--snow-white)]/10 overflow-hidden relative">
                                 {item.image ? (
                                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                 ) : (
@@ -407,7 +406,7 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
                                             <button
                                                 type="button"
                                                 onClick={cancelEdit}
-                                                className="flex items-center gap-1 px-3 py-2 rounded-lg bg-white/5 text-white border border-white/10 hover:bg-white/10 transition-colors"
+                                                className="flex items-center gap-1 px-3 py-2 rounded-lg bg-[var(--snow-white)]/5 text-[var(--snow-white)] border border-[var(--snow-white)]/10 hover:bg-[var(--snow-white)]/10 transition-colors"
                                             >
                                                 <X size={16} /> Отмена
                                             </button>
@@ -415,7 +414,7 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
                                     </div>
                                 ) : (
                                     <>
-                                        <h3 className="font-bold text-white text-lg">{item.name}</h3>
+                                        <h3 className="font-bold text-[var(--snow-white)] text-lg">{item.name}</h3>
                                         <div className="flex gap-4 text-xs text-gray-500 mt-1">
                                             {item.price && <span className="flex items-center gap-1 text-neon-green"><DollarSign size={12} /> {item.price}</span>}
                                             {item.url && <a href={item.url} target="_blank" className="flex items-center gap-1 hover:text-neon-cyan transition-colors truncate max-w-[200px]"><LinkIcon size={12} /> Ссылка</a>}
@@ -445,7 +444,7 @@ export default function WishlistEditor({ initialItems, wishlistSlug, isPinSet }:
                 ))}
 
                 {items.length === 0 && (
-                    <div className="text-center py-12 text-gray-500 border-2 border-dashed border-white/10 rounded-2xl">
+                    <div className="text-center py-12 text-[var(--snow-white)] opacity-60 border-2 border-dashed border-[var(--snow-white)]/10 rounded-2xl">
                         Ваш список пока пуст. Добавьте первое желание!
                     </div>
                 )}

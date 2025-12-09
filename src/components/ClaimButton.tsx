@@ -76,13 +76,12 @@ export default function ClaimButton({ itemId, initialClaims }: Props) {
         <button
             onClick={toggleClaim}
             disabled={loading || isClaimed}
-            className={`flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-full transition-colors ${
-                isClaimedByMe
-                    ? "bg-neon-green text-black hover:bg-white"
-                    : isClaimed
-                        ? "bg-gray-700 text-gray-300 cursor-not-allowed"
-                        : "bg-neon-cyan text-black hover:bg-white"
-            }`}
+            className={`flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-full transition-colors ${isClaimedByMe
+                ? "bg-neon-green text-black hover:bg-white border border-neon-green shadow-[0_0_10px_rgba(0,255,102,0.4)]"
+                : isClaimed
+                    ? "bg-gray-800 text-gray-500 cursor-not-allowed border border-gray-700"
+                    : "bg-neon-cyan text-black dark:text-white hover:bg-white hover:text-black dark:hover:text-black border border-neon-cyan shadow-[0_0_10px_rgba(0,243,255,0.4)] transition-all"
+                }`}
         >
             {loading ? (
                 <Loader2 size={14} className="animate-spin" />
