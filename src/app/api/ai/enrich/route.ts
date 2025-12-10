@@ -102,7 +102,7 @@ export async function POST(request: Request) {
 
         const aiJson = await aiResponse.json();
         const parts = aiJson?.candidates?.[0]?.content?.parts || [];
-        const rawText = parts.map((p: any) => p.text).filter(Boolean).join("\n");
+        const rawText = parts.map((p: { text?: string }) => p.text).filter(Boolean).join("\n");
 
         let parsed: { title?: string; image?: string; url?: string; price?: string } | null = null;
         try {
@@ -119,13 +119,13 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Не удалось распарсить ответ AI" }, { status: 500 });
         }
 
-        const price = sanitizePriceToRub(parsed.price);
-        const safeUrl = filterUrlByHost(parsed.url);
-        const safeImage = filterUrlByHost(parsed.image) || parsed.image || null;
+        const price = sanitizePriceToRub(parsed?.price);
+        const safeUrl = filterUrlByHost(parsed?.url);
+        const safeImage = filterUrlByHost(parsed?.image) || parsed?.image || null;
 
         return NextResponse.json({
             result: {
-                title: parsed.title || query,
+                title: parsed?.title || query,
                 image: safeImage,
                 url: safeUrl,
                 price,
