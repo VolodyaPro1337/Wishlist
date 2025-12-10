@@ -4,9 +4,10 @@ import { NextResponse, NextRequest } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function POST(request: NextRequest, { params }: { params: { id: string | string[] } }) {
+export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const rawId = params?.id;
+        const ctx = await params;
+        const rawId = (ctx as any)?.id;
         let itemId = Array.isArray(rawId) ? rawId[0] : rawId;
 
         // Fallback: pull from path if params missing

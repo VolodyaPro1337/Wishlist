@@ -8,9 +8,10 @@ function normalizeError(error: unknown) {
     return "Server error";
 }
 
-export async function GET(request: NextRequest, { params }: { params: { slug: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
     try {
-        const rawSlug = (params as any)?.slug;
+        const ctx = await params;
+        const rawSlug = (ctx as any)?.slug;
         const slugValue = Array.isArray(rawSlug) ? rawSlug[0] : rawSlug;
         let slugParam = slugValue != null ? String(slugValue) : "";
 
