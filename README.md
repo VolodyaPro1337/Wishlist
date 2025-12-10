@@ -6,7 +6,6 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-336791?style=for-the-badge&logo=postgresql)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
 
 > **A modern, festive wishlist application with anonymous authentication, secure sharing, and a beautiful holiday aesthetic.**
 
@@ -22,7 +21,6 @@
   - [Installation](#installation)
   - [Running Locally](#running-locally)
 - [📦 Deployment](#-deployment)
-  - [Docker (Recommended)](#docker-recommended)
   - [VPS Setup](#vps-setup)
 - [🔌 API Endpoints](#-api-endpoints)
 - [🤝 Contributing](#-contributing)
@@ -66,13 +64,9 @@ This project is built using the bleeding edge of the React ecosystem.
 | **Database** | [PostgreSQL](https://www.postgresql.org/) | Relational database for robust data integrity |
 | **ORM** | [Prisma](https://www.prisma.io/) | Type-safe database queries and schema management |
 | **Auth** | [Firebase](https://firebase.google.com/) | Anonymous Authentication provider |
-| **Container** | [Docker](https://www.docker.com/) | Full containerization for consistent deployment |
-
----
+----
 
 ## 🏗️ Architecture
-
-The application follows a modern **Monorepo-style** structure within Next.js:
 
 ```
 wishlist-app/
@@ -84,8 +78,6 @@ wishlist-app/
 │   │   └── api/            # Backend API endpoints
 │   ├── components/         # Reusable React components
 │   └── lib/                # Utilities, Server Actions, Prisma client
-├── Dockerfile              # Production image configuration
-└── docker-compose.yml      # Local/Prod orchestration
 ```
 
 ---
@@ -98,7 +90,6 @@ Ensure you have the following installed on your machine:
 
 *   **Node.js** (v18 or higher)
 *   **npm** or **yarn**
-*   **Docker** & **Docker Compose** (for running the database)
 
 ### Installation
 
@@ -130,19 +121,13 @@ Ensure you have the following installed on your machine:
 
 ### Running Locally
 
-1.  **Start the Database**
-    We use Docker Compose to spin up a PostgreSQL instance quickly.
-    ```bash
-    docker-compose up -d db
-    ```
-
-2.  **Run Migrations**
-    Apply the database schema:
+1.  **Run Migrations**
+    Apply the database schema against your configured `DATABASE_URL`:
     ```bash
     npx prisma migrate dev
     ```
 
-3.  **Start Development Server**
+2.  **Start Development Server**
     ```bash
     npm run dev
     ```
@@ -152,31 +137,25 @@ Ensure you have the following installed on your machine:
 
 ## 📦 Deployment
 
-### Docker (Recommended)
-
-This project includes a production-optimized `Dockerfile` using Next.js Standalone mode.
-
-1.  **Build and Run**
+### VPS Setup (git pull workflow)
+1. На сервере должны стоять Node.js 18+, npm и PostgreSQL (настройте `DATABASE_URL` в `.env`).
+2. Клонируйте проект или заходите в уже существующий:
     ```bash
-    docker-compose up -d --build
+    git clone https://github.com/VolodyaPro1337/Wishlist.git
+    cd Wishlist
     ```
-    This command builds the image and starts both the `app` and `db` services.
-
-### VPS Setup
-
-If deploying to a VPS (Ubuntu/Debian):
-
-1.  **Transfer Files**: Copy the project code to your server.
-2.  **Configure Nginx**: Use the provided `nginx/wishlist.conf` to set up a reverse proxy.
+3. Создайте `.env` с ключами (Firebase, GEMINI_API_KEY, DATABASE_URL и т.д.).
+4. Установите зависимости и примените миграции:
     ```bash
-    sudo cp nginx/wishlist.conf /etc/nginx/sites-available/wishlist
-    sudo ln -s /etc/nginx/sites-available/wishlist /etc/nginx/sites-enabled/
-    sudo systemctl restart nginx
+    npm ci
+    npx prisma migrate deploy
     ```
-3.  **SSL**: Secure it with Certbot.
+5. Соберите и запустите (в продакшене — под pm2/systemd):
     ```bash
-    sudo certbot --nginx -d your-domain.com
+    npm run build
+    npm run start
     ```
+6. Обновления: `git pull` → `npm ci` → `npx prisma migrate deploy` → `npm run build` → перезапуск сервиса.
 
 ---
 
@@ -222,4 +201,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <div align="center">
   <sub>Built with ❤️ and ☕ by VolodyaPro</sub>
 </div>
-
