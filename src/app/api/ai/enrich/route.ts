@@ -104,14 +104,15 @@ export async function POST(request: Request) {
         const parts = aiJson?.candidates?.[0]?.content?.parts || [];
         const rawText = parts.map((p: { text?: string }) => p.text).filter(Boolean).join("\n");
 
-        let parsed: { title?: string; image?: string; url?: string; price?: string } | null = null;
+        type ParsedResult = { title?: string; image?: string; url?: string; price?: string };
+        let parsed: ParsedResult | null = null;
         try {
-            parsed = JSON.parse(rawText) as typeof parsed;
+            parsed = JSON.parse(rawText) as ParsedResult;
         } catch {
             // Attempt to extract JSON from possible prose
             const match = rawText.match(/\{[\s\S]*\}/);
             if (match) {
-                parsed = JSON.parse(match[0]) as typeof parsed;
+                parsed = JSON.parse(match[0]) as ParsedResult;
             }
         }
 
@@ -119,13 +120,14 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Не удалось распарсить ответ AI" }, { status: 500 });
         }
 
-        const price = sanitizePriceToRub(parsed?.price);
-        const safeUrl = filterUrlByHost(parsed?.url);
-        const safeImage = filterUrlByHost(parsed?.image) || parsed?.image || null;
+        const parsedResult: ParsedResult = parsed;
+        const price = sanitizePriceToRub(parsedResult.price);
+        const safeUrl = filterUrlByHost(parsedResult.url);
+        const safeImage = filterUrlByHost(parsedResult.image) || parsedResult.image || null;
 
         return NextResponse.json({
             result: {
-                title: parsed?.title || query,
+                title: parsedResult.title || query,
                 image: safeImage,
                 url: safeUrl,
                 price,
