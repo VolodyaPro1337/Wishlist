@@ -4,9 +4,12 @@ import { NextResponse, NextRequest } from "next/server";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(
+    request: NextRequest,
+    context: { params: Promise<{ id: string }> },
+) {
     try {
-        const ctx = await params;
+        const ctx = await context.params;
         const rawId = (ctx as any)?.id;
         let itemId = Array.isArray(rawId) ? rawId[0] : rawId;
 
